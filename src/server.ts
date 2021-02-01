@@ -1,4 +1,6 @@
 import express from 'express'
+import cors from 'cors'
+
 import {stringify, v4 as uuid} from 'uuid'
 
 const app = express()
@@ -6,6 +8,7 @@ const PORT = 3333
 
 //Aceitar informações req.body 
 app.use(express.json())
+app.use(cors({origin: '*'}))
 
 
 // Method HTTP -> GET | POST | PUT | DELETE
@@ -21,7 +24,7 @@ interface User {
 const users: User[] = []
 
 // Routes
-app.get('/user', (request, response) => {
+app.get('/users', (request, response) => {
     return response.json(users)
 })
 
