@@ -38,8 +38,8 @@ app.post('/user', (request, response) => {
     //Passar o usuário criado pro array de users (banco de dados)
     users.push(user)
 
-    //Retornar status de sucesso
-    response.json({'message': 'User created successfully'})
+    //Retornar o array de usuários para recuperação no front-end
+    response.json(user)
 })
 
 app.put('/user/:id', (request, response) => {
