@@ -32,14 +32,19 @@ app.post('/user', (request, response) => {
     //Pegar as informações do usuário através do body
     const { name, email } = request.body
 
-    //Colocar as informações dentro de uma variável e criar o ID único com UUID
-    const user = {id: uuid(), name, email}
+    if(name === '' || email === '') {
+        return response.status(400).json({'error': 'Empty fields'})
+    } else {
+        //Colocar as informações dentro de uma variável e criar o ID único com UUID
+        const user = {id: uuid(), name, email}
 
-    //Passar o usuário criado pro array de users (banco de dados)
-    users.push(user)
+        //Passar o usuário criado pro array de users (banco de dados)
+        users.push(user)
 
-    //Retornar o array de usuários para recuperação no front-end
-    response.json(user)
+        //Retornar o array de usuários para recuperação no front-end
+        response.json(user)
+    }
+
 })
 
 app.put('/user/:id', (request, response) => {
